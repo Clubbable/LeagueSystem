@@ -1,0 +1,25 @@
+{
+  "name": "leaguesystem",
+  "version": "1.0.0",
+  "description": "UE4 league system matchmaking server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "matchmaking",
+    "league",
+    "Unreal"
+  ],
+  "author": "Martin Liu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.13.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.3"
+  }
+}
