@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://fb.me/react-15.2.0.js"></script>
+    <script src="https://fb.me/react-dom-15.2.0.js"></script>
+</head>
+<body>
+    <h1 class="title">LeagueSystem - Skill Based MMR Matchmaking</h1>
+
+    <div id="homepage">
+        <h1>Hire a ninja in your area!</h1>
+        <div id="players"></div>
+    </div>
+
+    <script type="text/babel">
+        var Players = React.createClass({
+            getInitialState: function(){
+                return({
+                   players:[]
+                });
+            },
+            render: function(){
+                var players = this.state.players;
+                players = players.map(function(player, index){
+                   return(
+                       <li key={index}>
+                           <span className="email">{player.Email}</span>
+                           <span className="accountname">{player.AccountName}</span>
+                           <span className="region">{player.Region}</span>
+                           <span className="tier">{player.Tier}</span>
+                           <span className="division">{player.Division}</span>
+                           <span className="mmr">{player.MatchMakeRating}</span>
+                       </li>
+                   );
+                });
+                return(
+                    <div id="ninja-container">
+                        <form id="search" onSubmit={this.handleSubmit}>
+                            <input type="submit" value="Get All Players" />
+                        </form>
+                        <ul>{players}</ul>
+                    </div>
+                );
+            },
+            handleSubmit: function(e){
+                e.preventDefault();
+                fetch("/leaguesystem/players").then(function(data){
+                   return data.json();
+                }).then(json => {
+                    this.setState({
+                        players: json
+                    })
+                });
+            }
+        });
+
+        ReactDOM.render(<Players/>, document.getElementById("players"));
+    </script>
+
+</body>
+</html>

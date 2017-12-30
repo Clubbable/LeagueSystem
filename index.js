@@ -1,3 +1,6 @@
+const React = require("react");
+const ReactDOM = require("react-dom");
+
 const bodyParser = require("body-parser");
 const express = require('express');
 const mongoose = require("mongoose");
@@ -7,6 +10,7 @@ const app = express();
 mongoose.connect("mongodb://localhost/leaguesystem");
 mongoose.Promise = global.Promise;
 
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use("/leaguesystem", require("./routes/api"));
 
