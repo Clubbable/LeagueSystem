@@ -4,7 +4,13 @@ const DbSchemas = require("../models/schemas");
 
 router.get("/players", function(req, res){
     DbSchemas.PlayerSchema.find({}).then(function(players){
-       res.send(players);
+
+        var ObjectToSend = {};
+        ObjectToSend["code"] = 200;
+        ObjectToSend["status"] = "OK";
+        ObjectToSend["data"] = players;
+
+        res.send(JSON.stringify(ObjectToSend));
     });
 });
 
