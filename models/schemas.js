@@ -24,7 +24,7 @@ const PartySchema = new Schema({
         type: [PlayerSchema],
         required:[true, "Members field is required!"]
     },
-    PlayerAverageMMR: {type: Number},
+    PartyAverageMMR: {type: Number},
     OpponentParty: {type: this}
 });
 
