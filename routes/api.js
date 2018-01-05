@@ -27,7 +27,10 @@ router.get("/parties", function(req, res){
 });
 
 router.post("/players", function(req, res, next){
-    DbSchemas.PlayerSchema.create(req.body).then(function(player){
+    var ReqBody = req.body;
+    var PlayersData = ReqBody["data"];
+
+    DbSchemas.PlayerSchema.create(PlayersData).then(function(player){
 
         var ObjectToSend = {};
         ObjectToSend["code"] = 200;
@@ -39,7 +42,10 @@ router.post("/players", function(req, res, next){
 });
 
 router.post("/parties", function(req, res, next){
-    DbSchemas.PartySchema.create(req.body).then(function(party){
+    var ReqBody = req.body;
+    var PartiesData = ReqBody["data"];
+
+    DbSchemas.PartySchema.create(PartiesData).then(function(party){
 
         var ObjectToSend = {};
         ObjectToSend["code"] = 200;
