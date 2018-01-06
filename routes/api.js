@@ -56,9 +56,10 @@ router.post("/parties", function(req, res, next){
     }).catch(next);
 });
 
-router.put("/players/:id", function(req, res, next){
-    DbSchemas.PlayerSchema.findByIdAndUpdate({_id:req.params.id}, req.body).then(function(){
-        DbSchemas.PlayerSchema.findOne({_id:req.params.id}).then(function(player){
+//Update players, by their AccountName
+router.put("/players/:accountname", function(req, res, next){
+    DbSchemas.PlayerSchema.findOneAndUpdate({AccountName:req.params.accountname}, req.body).then(function(){
+        DbSchemas.PlayerSchema.findOne({AccountName:req.params.accountname}).then(function(player){
 
             var ObjectToSend = {};
             ObjectToSend["code"] = 200;
@@ -70,9 +71,10 @@ router.put("/players/:id", function(req, res, next){
     }).catch(next);
 });
 
-router.put("/parties/:id", function(req, res, next){
-    DbSchemas.PartySchema.findByIdAndUpdate({_id:req.params.id}, req.body).then(function(){
-        DbSchemas.PartySchema.findOne({_id:req.params.id}).then(function(party){
+//Update Parties, by their party name
+router.put("/parties/:partyname", function(req, res, next){
+    DbSchemas.PartySchema.findOneAndUpdate({PartyName:req.params.partyname}, req.body).then(function(){
+        DbSchemas.PartySchema.findOne({PartyName:req.params.partyname}).then(function(party){
 
             var ObjectToSend = {};
             ObjectToSend["code"] = 200;
